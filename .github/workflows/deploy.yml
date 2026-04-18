@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ['main']
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -28,10 +33,15 @@ jobs:
       - name: Build with Next.js
         run: pnpm build
 
+      - name: Verify build output
+        run: |
+          test -d ./out || (echo "Build failed: ./out directory not found" && exit 1)
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
+          retention-days: 1
 
   deploy:
     environment:
