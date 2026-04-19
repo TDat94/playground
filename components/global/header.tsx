@@ -12,7 +12,7 @@ export function Header({ className }: { className?: string }) {
   return (
     <header
       className={cn(
-        'border-border bg-background/80 border-b backdrop-blur-md',
+        'border-border bg-background/70 border-b backdrop-blur-md',
         className,
       )}
     >
