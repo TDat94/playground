@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { Lora } from 'next/font/google';
+import { basePath } from '@/components/global/constants';
 
 const lora = Lora({
   subsets: ['latin'],
@@ -9,9 +10,6 @@ const lora = Lora({
   style: ['italic'],
   display: 'swap',
 });
-
-const basePath =
-  process.env.NODE_ENV === 'production' ? '/playground-of-the-lost-souls' : '';
 
 export default function Landing() {
   return (
