@@ -14,30 +14,30 @@ const lora = Lora({
 
 export default function Landing() {
   return (
-    <div className="w-full bg-white dark:bg-black">
+    <div className="bg-background w-full">
       {/* Quote Section */}
-      <div className="flex min-h-screen w-full items-center justify-center px-4 py-16 sm:px-8">
-        <div className="flex w-full max-w-6xl flex-col items-center gap-12 lg:flex-row lg:gap-20">
+      <div className="items-top mx-auto flex w-full max-w-4xl justify-center px-4 pt-16 sm:px-8">
+        <div className="flex w-full flex-col items-center gap-8">
           {/* Image Section */}
-          <div className="flex flex-shrink-0 items-center justify-center lg:w-1/2">
+          <div className="flex w-full flex-shrink-0 items-center justify-center">
             <Image
               src={`${basePath}/Avicii.jpg`}
               alt="Avicii portrait"
-              width={400}
-              height={500}
+              width={1280}
+              height={380}
               priority
-              className="rounded-lg object-cover shadow-lg"
+              className="object-cover"
             />
           </div>
 
           {/* Quote Section */}
-          <div className="flex flex-col items-start justify-center lg:w-1/2">
-            <blockquote className={`${lora.className} space-y-6`}>
-              <p className="text-3xl leading-relaxed text-zinc-900 italic sm:text-4xl dark:text-zinc-100">
+          <div className="bg-foreground/10 flex w-full flex-col items-center justify-center rounded-lg p-4 dark:bg-white/10">
+            <blockquote className={`${lora.className} w-full space-y-2`}>
+              <p className="w-full text-center text-xl text-zinc-900 italic sm:text-xl dark:text-zinc-100">
                 One day you&apos;ll leave this world behind. So live a life you
                 will remember.
               </p>
-              <p className="text-lg font-medium text-zinc-600 dark:text-zinc-400">
+              <p className="text-md w-full text-right font-medium text-zinc-600 dark:text-zinc-400">
                 ~ The Nights by Avicii ~
               </p>
             </blockquote>
@@ -45,9 +45,9 @@ export default function Landing() {
         </div>
       </div>
 
-      {/* Greeting Section - Fades in on scroll */}
-      <div className="flex min-h-screen w-full items-center justify-center px-4 py-16 sm:px-8">
-        <div className="w-full max-w-2xl">
+      {/* Greeting Section */}
+      <div className="mx-auto flex w-full max-w-4xl items-start justify-start py-16 sm:px-8">
+        <div className="w-full">
           <Greeting />
         </div>
       </div>

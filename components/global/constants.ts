@@ -1,4 +1,4 @@
 'use client';
 
 export const basePath =
-  process.env.NODE_ENV === 'production' ? '/playground-of-the-lost-souls' : '';
+  process.env.NODE_ENV === 'production' ? '/playground' : '';

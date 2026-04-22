@@ -7,15 +7,10 @@ import Image from 'next/image';
 import { basePath } from './constants';
 
 export function Header({ className }: { className?: string }) {
-  const navLinks = ['About', 'Works', 'News', 'Gaming'];
+  const navLinks = ['Works', 'News', 'Recommendations'];
 
   return (
-    <header
-      className={cn(
-        'border-border bg-background/70 border-b backdrop-blur-md',
-        className,
-      )}
-    >
+    <header className={cn('bg-background/70 backdrop-blur-md', className)}>
       <div className="max-w-8xl mx-auto flex items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
         {/* Logo and Title */}
         <div className="flex items-center gap-8">
