@@ -14,7 +14,11 @@ export function ThemeSwitcherButton() {
   };
 
   return (
-    <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.95 }}>
+    <motion.div
+      whileHover={{ scale: 1.25 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: 'spring', stiffness: 1000, damping: 20 }}
+    >
       <Button
         variant="ghost"
         size="icon"
