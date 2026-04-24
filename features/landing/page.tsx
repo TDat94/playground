@@ -35,11 +35,11 @@ export default function LandingPage() {
           {/* Quote Section */}
           <div className="bg-foreground/10 flex w-full flex-col items-center justify-center rounded-lg p-4">
             <blockquote className={`${lora.className} w-full space-y-2`}>
-              <p className="w-full text-center text-xl text-zinc-900 italic sm:text-xl dark:text-zinc-100">
+              <p className="text-foreground dark:muted-foreground w-full text-center text-xl italic sm:text-xl">
                 One day you&apos;ll leave this world behind. So live a life you
                 will remember.
               </p>
-              <p className="text-md w-full text-right font-medium text-zinc-600 dark:text-zinc-400">
+              <p className="text-md text-foreground/70 w-full text-right font-medium">
                 ~ The Nights by Avicii ~
               </p>
             </blockquote>

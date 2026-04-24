@@ -6,13 +6,11 @@ import { basePath } from '@/components/global/constants';
 export const AboutMe = () => {
   return (
     <div className="flex flex-col items-start justify-start gap-4">
-      <h2 className="text-2xl font-semibold tracking-tighter text-zinc-900 dark:text-zinc-100">
+      <h2 className="text-foreground text-2xl font-semibold tracking-tighter">
         About Me
       </h2>
-      <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100">
-        Đỗ Phan Tuấn Đạt
-      </h3>
-      <p className="text-md text-zinc-700 dark:text-zinc-300">
+      <h3 className="text-foreground text-xl font-medium">Đỗ Phan Tuấn Đạt</h3>
+      <p className="text-md text-foreground">
         I grew up in Da Nang city, Vietnam, so I&apos;m as Vietnamese as it
         gets. I moved to Ho Chi Minh city initially for University, but I ended
         up finding a job and will probably spend even more time here than I have

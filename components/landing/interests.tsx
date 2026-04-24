@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 export const Interests = () => {
   return (
     <div className="flex flex-col items-start justify-start gap-4">
-      <h2 className="text-2xl font-semibold tracking-tighter text-zinc-900 dark:text-zinc-100">
+      <h2 className="text-foreground text-2xl font-semibold tracking-tighter">
         My Interests
       </h2>
       <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
