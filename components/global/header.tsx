@@ -32,7 +32,7 @@ export function Header({ className }: { className?: string }) {
             {navLinks.map((link) => (
               <a
                 key={link}
-                href={`/${link.toLowerCase()}`}
+                href={`${basePath}/${link.toLowerCase()}`}
                 className="text-foreground hover:text-muted-foreground text-md font-regular transition-colors"
               >
                 {link}
