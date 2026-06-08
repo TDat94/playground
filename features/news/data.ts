@@ -68,7 +68,7 @@ const rawNews: Omit<NewsItem, 'date'>[] = [
     time: 'September 2022',
     icon: 'nf-fa-school',
     content:
-      'Graduated from University of Science, VNU-HCM with a Bachelor of Computer Science.',
+      'Enrolled in University of Science, VNU-HCM for a Bachelor of Computer Science degree.',
   },
   {
     time: 'June 2022',

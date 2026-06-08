@@ -3,8 +3,8 @@
 import { news } from '@/features/news/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-const MIN_GAP_PX = 72;
-const MAX_GAP_PX = 540;
+const MIN_GAP_PX = 40;
+const MAX_GAP_PX = 720;
 
 const monthsBetween = (later: Date, earlier: Date): number => {
   const yearDiff = later.getFullYear() - earlier.getFullYear();
@@ -91,7 +91,7 @@ export const Timeline = () => {
                     ].join(' ')}
                   >
                     <span
-                      className={`nf ${item.icon} text-2xl text-[var(--deep-indigo)]`}
+                      className={`nf ${item.icon} text-3xl text-[var(--deep-indigo)]`}
                     />
                     <span className="text-foreground text-sm font-medium">
                       {item.time}
@@ -106,7 +106,7 @@ export const Timeline = () => {
                     isLeft ? 'md:pl-8' : 'md:order-1 md:pr-8',
                   ].join(' ')}
                 >
-                  <Card size="sm">
+                  <Card size="sm" className="border-primary/50 border-1">
                     <CardContent className="text-foreground/90 text-sm leading-relaxed">
                       {item.content}
                     </CardContent>
