@@ -3,7 +3,7 @@
 import { news } from '@/features/news/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-const MIN_GAP_PX = 40;
+const MIN_GAP_PX = 20;
 const MAX_GAP_PX = 720;
 
 const monthsBetween = (later: Date, earlier: Date): number => {

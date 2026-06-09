@@ -76,6 +76,17 @@ const rawNews: Omit<NewsItem, 'date'>[] = [
     content: 'Graduated from Le Thanh Tong High School for the Gifted.',
   },
   {
+    time: 'January 2022',
+    icon: 'nf-md-file_certificate',
+    content: 'Achieved IELTS Academic certificate with band 8.0.',
+  },
+  {
+    time: 'September 2019',
+    icon: 'nf-fa-school',
+    content:
+      'Enrolled in Le Thanh Tong High School for the Gifted, specializing in English proficiency.',
+  },
+  {
     time: 'April 9th 2004',
     icon: 'nf-fa-cake_candles',
     content: 'Born in Hoi An City, Central Vietnam.',
