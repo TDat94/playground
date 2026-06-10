@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { basePath } from './constants';
 
 export function Header({ className }: { className?: string }) {
-  const navLinks = ['Portfolio', 'News', 'Recommendations'];
+  const navLinks = ['Portfolio', 'News', 'Recommendations', 'Roadmap'];
 
   return (
     <header className={cn('bg-background/70 backdrop-blur-md', className)}>
