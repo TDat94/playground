@@ -232,6 +232,66 @@
   html {
     @apply font-sans;
   }
+  html {
+    color-scheme: light;
+  }
+  html.dark,
+  html.catppuccin-mocha {
+    color-scheme: dark;
+  }
+  html.catppuccin-latte {
+    color-scheme: light;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 400ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::view-transition-old(root) {
+    animation-name: theme-fade-out;
+  }
+
+  ::view-transition-new(root) {
+    animation-name: theme-fade-in;
+  }
+
+  @keyframes theme-fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes theme-fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-property:
+      background-color, border-color, color, fill, stroke, box-shadow;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none !important;
+    }
+  }
   :root {
     --color-kanban-board-circle-blue: var(--kanban-board-circle-blue);
     --color-kanban-board-circle-cyan: var(--kanban-board-circle-cyan);

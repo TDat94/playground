@@ -40,18 +40,18 @@ export const roadmap: BoardData = [
         description:
           'Improve mobile responsiveness and unify the time-gap algorithm with a smoother visual curve.',
       },
-      {
-        id: 'in-progress-theme',
-        title: 'Theme switcher polish',
-        description:
-          'Smoother transitions between light, dark, and Catppuccin themes. Persist last selected theme in localStorage.',
-      },
     ],
   },
   {
     id: 'Completed',
     color: 'green',
     cards: [
+      {
+        id: 'completed-theme',
+        title: 'Theme switcher polish',
+        description:
+          'Smooth transitions between themes. Persist last selected theme in localStorage.',
+      },
       {
         id: 'completed-kanban',
         title: 'Build a Kanban roadmap page',
