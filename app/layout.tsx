@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
@@ -31,9 +30,7 @@ const themeInitScript = `
     var theme = stored && ['light', 'dark', 'catppuccin-latte', 'catppuccin-mocha'].includes(stored)
       ? stored
       : 'light';
-    var root = document.documentElement;
-    root.classList.remove('light', 'dark', 'catppuccin-latte', 'catppuccin-mocha');
-    root.classList.add(theme);
+    document.documentElement.setAttribute('data-theme', theme);
   } catch (e) {}
 })();
 `;
@@ -56,14 +53,14 @@ export default function RootLayout({
         inter.variable,
       )}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="flex min-h-full flex-col">
         <Providers>
           <Header className="fixed top-0 right-0 left-0 z-50" />
           <main className="pt-16">{children}</main>
         </Providers>
-        <Script id="theme-init" strategy="beforeInteractive">
-          {themeInitScript}
-        </Script>
       </body>
     </html>
   );

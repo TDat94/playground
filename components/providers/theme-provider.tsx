@@ -13,7 +13,7 @@ const THEMES = [
 export function Providers({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider
-      attribute="class"
+      attribute="data-theme"
       defaultTheme="light"
       enableSystem={false}
       storageKey="theme-preference"

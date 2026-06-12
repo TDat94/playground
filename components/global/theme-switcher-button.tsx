@@ -62,14 +62,7 @@ export function ThemeSwitcherButton() {
 
   const applyTheme = (newTheme: ThemeName) => {
     const apply = () => {
-      const root = document.documentElement;
-      root.classList.remove(
-        'light',
-        'dark',
-        'catppuccin-latte',
-        'catppuccin-mocha',
-      );
-      root.classList.add(newTheme);
+      document.documentElement.setAttribute('data-theme', newTheme);
       setTheme(newTheme);
     };
 

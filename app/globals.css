@@ -3,7 +3,7 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='catppuccin-mocha']));
 
 @theme inline {
   --color-background: var(--background);
@@ -108,7 +108,8 @@
   --kanban-board-circle-yellow: oklch(0.7959 0.1618 86.05);
 }
 
-.dark {
+.dark,
+[data-theme='dark'] {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -153,7 +154,8 @@
 }
 
 /* Catppuccin Latte (Light Theme) */
-.catppuccin-latte {
+.catppuccin-latte,
+[data-theme='catppuccin-latte'] {
   --background: #eff1f5;
   --foreground: #4c4f69;
   --card: #eff1f5;
@@ -188,7 +190,8 @@
 }
 
 /* Catppuccin Mocha (Dark Theme) */
-.catppuccin-mocha {
+.catppuccin-mocha,
+[data-theme='catppuccin-mocha'] {
   --background: #1e1e2e;
   --foreground: #cdd6f4;
   --card: #1e1e2e;
@@ -235,11 +238,12 @@
   html {
     color-scheme: light;
   }
-  html.dark,
-  html.catppuccin-mocha {
+  html[data-theme='dark'],
+  html[data-theme='catppuccin-mocha'] {
     color-scheme: dark;
   }
-  html.catppuccin-latte {
+  html[data-theme='light'],
+  html[data-theme='catppuccin-latte'] {
     color-scheme: light;
   }
 
