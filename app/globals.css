@@ -3,7 +3,7 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
-@custom-variant dark (&:where([data-theme='dark'], [data-theme='catppuccin-mocha']));
+@custom-variant dark (&:where([data-theme-mode='dark']));
 
 @theme inline {
   --color-background: var(--background);
@@ -238,13 +238,15 @@
   html {
     color-scheme: light;
   }
-  html[data-theme='dark'],
-  html[data-theme='catppuccin-mocha'] {
+  html[data-theme-mode='dark'] {
     color-scheme: dark;
   }
-  html[data-theme='light'],
-  html[data-theme='catppuccin-latte'] {
-    color-scheme: light;
+
+  html.no-transitions,
+  html.no-transitions *,
+  html.no-transitions *::before,
+  html.no-transitions *::after {
+    transition: none !important;
   }
 
   ::view-transition-old(root),

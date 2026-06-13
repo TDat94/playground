@@ -1,26 +1,25 @@
 'use client';
 
+import { useSyncExternalStore } from 'react';
 import { useTheme } from 'next-themes';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { basePath } from '@/components/global/constants';
+import {
+  THEME_LABELS,
+  THEME_MODES,
+  THEME_NAMES,
+  type ThemeName,
+} from '@/components/providers/themes';
 
-const themes = [
-  'light',
-  'dark',
-  'catppuccin-latte',
-  'catppuccin-mocha',
-] as const;
-
-type ThemeName = (typeof themes)[number];
-
-const themeLabels: Record<ThemeName, string> = {
-  light: 'Light Mode',
-  dark: 'Dark Mode',
-  'catppuccin-latte': 'Catppuccin Latte',
-  'catppuccin-mocha': 'Catppuccin Mocha',
-};
+const subscribe = () => () => {};
+const useHasMounted = () =>
+  useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false,
+  );
 
 function ThemeIcon({ theme }: { theme: ThemeName }) {
   switch (theme) {
@@ -53,6 +52,8 @@ function ThemeIcon({ theme }: { theme: ThemeName }) {
 
 export function ThemeSwitcherButton() {
   const { resolvedTheme, setTheme } = useTheme();
+  const mounted = useHasMounted();
+  const themes = THEME_NAMES;
 
   const currentTheme = themes.includes(resolvedTheme as ThemeName)
     ? (resolvedTheme as ThemeName)
@@ -63,6 +64,10 @@ export function ThemeSwitcherButton() {
   const applyTheme = (newTheme: ThemeName) => {
     const apply = () => {
       document.documentElement.setAttribute('data-theme', newTheme);
+      document.documentElement.setAttribute(
+        'data-theme-mode',
+        THEME_MODES[newTheme],
+      );
       setTheme(newTheme);
     };
 
@@ -86,23 +91,38 @@ export function ThemeSwitcherButton() {
       <Button
         variant="ghost"
         size="icon"
-        onClick={() => applyTheme(nextTheme)}
+        onClick={() => mounted && applyTheme(nextTheme)}
         className="rounded-lg"
-        aria-label={`Switch to ${themeLabels[nextTheme]}`}
-        title={`Click to switch to ${themeLabels[nextTheme]}`}
+        aria-label={
+          mounted ? `Switch to ${THEME_LABELS[nextTheme]}` : 'Switch theme'
+        }
+        title={
+          mounted
+            ? `Click to switch to ${THEME_LABELS[nextTheme]}`
+            : 'Switch theme'
+        }
+        suppressHydrationWarning
       >
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.span
-            key={currentTheme}
-            initial={{ opacity: 0, rotate: -90, scale: 0.6 }}
-            animate={{ opacity: 1, rotate: 0, scale: 1 }}
-            exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
-            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-            className="flex items-center justify-center"
-          >
-            <ThemeIcon theme={currentTheme} />
-          </motion.span>
-        </AnimatePresence>
+        {mounted ? (
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={currentTheme}
+              initial={{ opacity: 0, rotate: -90, scale: 0.6 }}
+              animate={{ opacity: 1, rotate: 0, scale: 1 }}
+              exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
+              transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+              className="flex items-center justify-center"
+            >
+              <ThemeIcon theme={currentTheme} />
+            </motion.span>
+          </AnimatePresence>
+        ) : (
+          <span
+            aria-hidden
+            className="block text-lg leading-none opacity-0"
+            style={{ width: '1em', height: '1em' }}
+          />
+        )}
       </Button>
     </motion.div>
   );

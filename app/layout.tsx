@@ -4,6 +4,11 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { Header } from '@/components/global/header';
 import { Providers } from '@/components/providers/theme-provider';
+import {
+  STORAGE_KEY,
+  THEME_MODES,
+  THEME_NAMES,
+} from '@/components/providers/themes';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -23,14 +28,17 @@ export const metadata: Metadata = {
     'A personal portfolio, which is also a playground to mess around with website development and design.',
 };
 
+const validThemes = JSON.stringify(THEME_NAMES);
+const themeModes = JSON.stringify(THEME_MODES);
+
 const themeInitScript = `
 (function () {
   try {
-    var stored = localStorage.getItem('theme-preference');
-    var theme = stored && ['light', 'dark', 'catppuccin-latte', 'catppuccin-mocha'].includes(stored)
-      ? stored
-      : 'light';
+    var stored = localStorage.getItem('${STORAGE_KEY}');
+    var theme = stored && ${validThemes}.includes(stored) ? stored : 'light';
+    var mode = (${themeModes})[theme] || 'light';
     document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute('data-theme-mode', mode);
   } catch (e) {}
 })();
 `;
@@ -53,10 +61,8 @@ export default function RootLayout({
         inter.variable,
       )}
     >
-      <head>
+      <body className="flex min-h-full flex-col" suppressHydrationWarning>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
-      <body className="flex min-h-full flex-col">
         <Providers>
           <Header className="fixed top-0 right-0 left-0 z-50" />
           <main className="pt-16">{children}</main>
