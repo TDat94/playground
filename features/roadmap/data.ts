@@ -35,6 +35,12 @@ export const roadmap: BoardData = [
     color: 'yellow',
     cards: [
       {
+        id: 'in-progress-theme',
+        title: 'Theme switcher polish',
+        description:
+          'Smooth transitions between themes. Persist last selected theme in localStorage.',
+      },
+      {
         id: 'in-progress-news',
         title: 'Refactor news timeline',
         description:
@@ -46,12 +52,6 @@ export const roadmap: BoardData = [
     id: 'Completed',
     color: 'green',
     cards: [
-      {
-        id: 'completed-theme',
-        title: 'Theme switcher polish',
-        description:
-          'Smooth transitions between themes. Persist last selected theme in localStorage.',
-      },
       {
         id: 'completed-kanban',
         title: 'Build a Kanban roadmap page',
