@@ -61,8 +61,10 @@ export default function RootLayout({
         inter.variable,
       )}
     >
-      <body className="flex min-h-full flex-col" suppressHydrationWarning>
+      <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="flex min-h-full flex-col" suppressHydrationWarning>
         <Providers>
           <Header className="fixed top-0 right-0 left-0 z-50" />
           <main className="pt-16">{children}</main>
