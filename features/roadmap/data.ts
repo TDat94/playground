@@ -6,6 +6,24 @@ export const roadmap: BoardData = [
     color: 'gray',
     cards: [
       {
+        id: 'backlog-extra-themes',
+        title: 'Add more themes',
+        description:
+          'Add more themes to the theme switcher, including popular thems used by devs as well as some fun and unique ones.',
+      },
+      {
+        id: 'backlog-portfolio',
+        title: 'Actually make Portfolio',
+        description:
+          'The current site is a placeholder. Build a proper portfolio populated with projects.',
+      },
+      {
+        id: 'backlog-easter-eggs',
+        title: 'Easter eggs',
+        description:
+          'Add hidden features and surprises throughout the application.',
+      },
+      {
         id: 'backlog-ittools',
         title: 'Add IT tools section',
         description: 'Create a /ittools route with many useful tools.',
