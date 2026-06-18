@@ -106,6 +106,9 @@
   --kanban-board-circle-red: oklch(0.6368 0.2078 25.33);
   --kanban-board-circle-violet: oklch(0.6059 0.2187 292.72);
   --kanban-board-circle-yellow: oklch(0.7959 0.1618 86.05);
+
+  --news-min-gap: 16px;
+  --news-max-gap: 360px;
 }
 
 .dark,
@@ -223,6 +226,13 @@
   --sidebar-accent-foreground: #89b4fa;
   --sidebar-border: #6c7086;
   --sidebar-ring: #9399b2;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --news-min-gap: 20px;
+    --news-max-gap: 720px;
+  }
 }
 
 @layer base {

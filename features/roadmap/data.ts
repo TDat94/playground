@@ -33,19 +33,18 @@ export const roadmap: BoardData = [
   {
     id: 'In Progress',
     color: 'yellow',
-    cards: [
-      {
-        id: 'in-progress-news',
-        title: 'Refactor news timeline',
-        description:
-          'Improve mobile responsiveness and unify the time-gap algorithm with a smoother visual curve.',
-      },
-    ],
+    cards: [],
   },
   {
     id: 'Completed',
     color: 'green',
     cards: [
+      {
+        id: 'completed-news',
+        title: 'News timeline',
+        description:
+          'News page with a timeline of notable moments in life. Dynamically compute gaps between items to compress distant events and let recent ones breathe.',
+      },
       {
         id: 'completed-theme',
         title: 'Theme switcher polish',
