@@ -8,7 +8,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Sun, Moon, Coffee, Monitor } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { basePath } from './constants';
 import {
   THEME_LABELS,
   THEME_MODES,
@@ -220,7 +219,7 @@ export function Header() {
               return (
                 <Link
                   key={link.href}
-                  href={`${basePath}${link.href}`}
+                  href={link.href}
                   data-active={isActive}
                   className={cn(
                     'nav-underline text-foreground hover:text-mauve px-3 py-1.5 transition-colors',
