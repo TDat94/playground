@@ -88,10 +88,10 @@ export const roadmap: BoardData = [
           'Static export with the correct basePath, unoptimized images, and a working 404 fallback.',
       },
       {
-        id: 'completed-landing',
-        title: 'Polish landing page',
+        id: 'completed-UI-personalization',
+        title: 'UI personalization',
         description:
-          'Quote section, greeting, about, and interests sections rendered with consistent spacing and typography.',
+          'Redesign the user interface to match my personal aesthetic preferences, including colors, fonts, and layout.',
       },
     ],
   },

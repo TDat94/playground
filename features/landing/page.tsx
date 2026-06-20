@@ -1,72 +1,41 @@
 'use client';
 
-import Image from 'next/image';
-import { Lora } from 'next/font/google';
-import { basePath } from '@/components/global/constants';
-import { Greeting } from '@/components/landing/greetings';
+import { Hero } from '@/components/landing/hero';
+import { Monogram } from '@/components/landing/monogram';
+import { Quote } from '@/components/landing/quote';
 import { AboutMe } from '@/components/landing/about';
-import { Interests } from '@/components/landing/interests';
-
-const lora = Lora({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  style: ['italic'],
-  display: 'swap',
-});
+import { Directory } from '@/components/landing/directory';
+import { Footer } from '@/components/landing/footer';
 
 export default function LandingPage() {
   return (
     <div className="bg-background w-full">
-      {/* Quote Section */}
-      <div className="items-top mx-auto flex w-full max-w-4xl justify-center px-4 py-8 sm:px-8">
-        <div className="flex w-full flex-col items-center gap-8">
-          {/* Image Section */}
-          <div className="flex w-full flex-shrink-0 items-center justify-center">
-            <Image
-              src={`${basePath}/Avicii.jpg`}
-              alt="Avicii portrait"
-              width={1280}
-              height={380}
-              priority
-              className="object-cover"
-            />
-          </div>
+      <div className="mx-auto flex w-full max-w-5xl flex-col gap-24 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        {/* Hero */}
+        <section className="grid grid-cols-1 items-start gap-8 md:grid-cols-[1fr_auto]">
+          <Hero />
+          <Monogram />
+        </section>
 
-          {/* Quote Section */}
-          <div className="bg-foreground/10 flex w-full flex-col items-center justify-center rounded-lg p-4">
-            <blockquote className={`${lora.className} w-full space-y-2`}>
-              <p className="text-foreground dark:muted-foreground w-full text-center text-xl italic sm:text-xl">
-                One day you&apos;ll leave this world behind. So live a life you
-                will remember.
-              </p>
-              <p className="text-md text-foreground/70 w-full text-right font-medium">
-                ~ The Nights by Avicii ~
-              </p>
-            </blockquote>
-          </div>
-        </div>
-      </div>
+        {/* Quote */}
+        <section>
+          <Quote
+            text={`One day you'll leave this world behind. So live a life you will remember.`}
+            attribution="The Nights by Avicii"
+          />
+        </section>
 
-      {/* Greeting Section */}
-      <div className="mx-auto flex w-full max-w-4xl items-start justify-start py-8 sm:px-8">
-        <div className="w-full">
-          <Greeting />
-        </div>
-      </div>
-
-      {/* About Me Section */}
-      <div className="mx-auto flex w-full max-w-4xl items-start justify-start py-8 sm:px-8">
-        <div className="w-full">
+        {/* About */}
+        <section>
           <AboutMe />
-        </div>
-      </div>
+        </section>
 
-      {/* Interests Section */}
-      <div className="mx-auto flex w-full max-w-4xl items-start justify-start py-8 sm:px-8">
-        <div className="w-full">
-          <Interests />
-        </div>
+        {/* Directory */}
+        <section>
+          <Directory />
+        </section>
       </div>
+      <Footer />
     </div>
   );
 }

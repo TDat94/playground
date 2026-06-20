@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
-import { CustomButton } from '@/components/ui/custom-button';
+import { Download, ExternalLink } from 'lucide-react';
+import { basePath } from '@/components/global/constants';
+import { Button } from '@/components/ui/button';
 
-const PDF_PATH = 'DoPhanTuanDat_CV.pdf';
+const PDF_PATH = `${basePath}/DoPhanTuanDat_CV.pdf`;
 
 export const Resume = () => {
   const handleDownload = () => {
@@ -16,21 +17,41 @@ export const Resume = () => {
   };
 
   return (
-    <div className="flex w-full flex-col gap-6">
-      {/* Download Button */}
-      <div className="flex justify-center">
-        <CustomButton onClick={handleDownload} className="gap-2">
-          <span className="nf nf-oct-download" />
-          Download
-        </CustomButton>
+    <div className="bg-card border-border overflow-hidden rounded-lg border">
+      <div className="border-border flex items-center justify-between gap-2 border-b px-4 py-2">
+        <span className="text-foreground font-mono text-sm">
+          DoPhanTuanDat_CV.pdf
+        </span>
+        <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="xs"
+            onClick={handleDownload}
+            className="font-mono"
+            aria-label="Download PDF"
+          >
+            <Download data-icon="inline-start" />
+            download
+          </Button>
+          <Button
+            variant="ghost"
+            size="xs"
+            asChild
+            className="font-mono"
+            aria-label="Open in new tab"
+          >
+            <a href={PDF_PATH} target="_blank" rel="noopener noreferrer">
+              <ExternalLink data-icon="inline-start" />
+              open
+            </a>
+          </Button>
+        </div>
       </div>
-
-      {/* PDF Embed */}
-      <div className="flex justify-center">
+      <div className="p-2">
         <iframe
           src={PDF_PATH}
           title="Resume PDF"
-          className="h-screen w-full max-w-4xl border border-gray-200 dark:border-gray-700"
+          className="bg-background h-[80vh] w-full rounded-sm"
         />
       </div>
     </div>

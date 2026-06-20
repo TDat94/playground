@@ -28,7 +28,11 @@ const COLOR_CIRCLE_CLASS: Record<KanbanBoardCircleColor, string> = {
 export const KanbanCard = ({ card, color }: KanbanCardProps) => {
   return (
     <li className="px-2 py-1">
-      <div className="border-border bg-background text-foreground flex w-full flex-col gap-1 rounded-lg border p-3 text-start shadow-sm">
+      <div
+        className={cn(
+          'border-border bg-background text-foreground hover:border-mauve flex w-full flex-col gap-1 rounded-lg border p-3 text-start font-mono text-sm shadow-sm transition-all hover:-translate-y-0.5',
+        )}
+      >
         <div className="flex w-full items-start gap-2">
           <span
             aria-hidden
