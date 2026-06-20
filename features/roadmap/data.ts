@@ -14,8 +14,7 @@ export const roadmap: BoardData = [
       {
         id: 'backlog-portfolio',
         title: 'Actually make Portfolio',
-        description:
-          'The current site is a placeholder. Build a proper portfolio populated with projects.',
+        description: 'Build a proper portfolio populated with projects.',
       },
       {
         id: 'backlog-easter-eggs',

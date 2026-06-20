@@ -146,7 +146,7 @@ export function Header() {
               >
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
-                    key={currentTheme}
+                    key={mounted ? currentTheme : 'ssr'}
                     initial={{ opacity: 0, rotate: -45 }}
                     animate={{ opacity: 1, rotate: 0 }}
                     exit={{ opacity: 0, rotate: 45 }}
@@ -154,8 +154,23 @@ export function Header() {
                     className="flex items-center gap-1.5"
                     suppressHydrationWarning
                   >
-                    <ThemeIcon theme={currentTheme} data-icon="inline-start" />
-                    <span>{THEME_LABELS[currentTheme]}</span>
+                    {mounted ? (
+                      <ThemeIcon
+                        theme={currentTheme}
+                        data-icon="inline-start"
+                      />
+                    ) : (
+                      <Monitor
+                        className="size-4"
+                        data-icon="inline-start"
+                        aria-hidden
+                      />
+                    )}
+                    <span>
+                      {mounted
+                        ? THEME_LABELS[currentTheme]
+                        : THEME_LABELS['catppuccin-mocha']}
+                    </span>
                   </motion.span>
                 </AnimatePresence>
               </Button>
