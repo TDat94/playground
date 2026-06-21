@@ -27,12 +27,6 @@ export const roadmap: BoardData = [
         title: 'Add IT tools section',
         description: 'Create a /ittools route with many useful tools.',
       },
-      {
-        id: 'backlog-recommendations',
-        title: 'Recommendations page',
-        description:
-          'Implement the recommendations page, which is a dedicated section for showcasing recommended materials.',
-      },
     ],
   },
   {
@@ -57,10 +51,15 @@ export const roadmap: BoardData = [
     color: 'green',
     cards: [
       {
+        id: 'completed-recommendations',
+        title: 'Recommendations page',
+        description:
+          'Recommendations page, which is a dedicated section for showcasing recommended materials.',
+      },
+      {
         id: 'completed-news',
         title: 'News timeline',
-        description:
-          'News page with a timeline of notable moments in life. Dynamically compute gaps between items to compress distant events and let recent ones breathe.',
+        description: 'News page with a timeline of notable moments in life.',
       },
       {
         id: 'completed-theme',

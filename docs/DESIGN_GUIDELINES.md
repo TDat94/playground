@@ -158,9 +158,13 @@ Any "card" or content block follows this structure:
 
 ---
 
-## 7. Directory listing pattern (`~/interests/` and similar)
+## 7. Folder/tree patterns
 
-Use this when a list of "categories" needs to be displayed and each can be opened to reveal items.
+Three reusable patterns: a terminal-listing directory (§7.1), a file-explorer-style tree (§7.2), and an annotated detail view that pairs with §7.2 (§7.3).
+
+### 7.1 Directory listing (terminal-style) — `~/interests/` and similar
+
+Use this when a list of "categories" needs to be displayed and each can be opened to reveal items, **and the categories are stylistically distinct** (e.g. each gets a different cat-\* color).
 
 ```
 drwxr-xr-x   programming          →  5 items
@@ -173,6 +177,36 @@ drwxr-xr-x   art-and-design       →  4 items
 - Expanded panel slides down with framer-motion `AnimatePresence` + height/opacity transition. The panel has a 2px left border in the row's accent color.
 - Items inside: mono bullets with a `~` prefix; items with URLs become `<a target="_blank">`; items without are `<span>`.
 - Reference: `components/landing/directory.tsx`.
+
+### 7.2 File tree (explorer-style)
+
+Use this when a sidebar shows a hierarchy of items grouped by category, **and the categories are not stylistically distinct** — i.e. you want a single Mauve "current thing" signal, not one color per category. This is the more common case (e.g. a list of items grouped by type, like `/recommendations`).
+
+- No `drwxr-xr-x` prefix (that belongs in a terminal listing).
+- No per-row colored swatch. The row's "type icon" (a Nerd Font glyph from `RECOMMENDATION_TYPE_ICON` or similar) is the only visual marker.
+- Folder row: chevron + type icon + label (flex-1, truncate) + right-aligned count (a number, `shrink-0 pr-1 tabular-nums`). Only one categorical color is allowed — Mauve, and only on the active file.
+- File row (inside an expanded folder): same Nerd Font icon as the parent folder + `<id>.<type>` filename. Indented with `pl-12` (or enough `pl-*` to push the file's icon past the folder's chevron, so the indent reads as "inside the folder"). Active state: `text-mauve` + `border-l-2 border-mauve`. Inactive: `border-l-2 border-transparent`, icon `text-muted-foreground`.
+- Folder expand/collapse: framer-motion `AnimatePresence` + `height: auto` + `opacity` over 200ms `easeOut`. The folder containing the active file is auto-expanded on mount and when the file selection changes.
+- Folders sort alphabetically by their category key; files within a folder sort alphabetically by `id` (case-insensitive).
+- Reference: `components/recommendations/sidebar.tsx`, `folder-row.tsx`, `file-row.tsx`.
+
+### 7.3 Annotated detail view
+
+Use this when a clicked item's details should be displayed as a structured "document" — a key-value record rendered with a line-number gutter, in the same visual language as opening a file in a text editor. Pairs naturally with §7.2 (the user clicks a file in the tree, the file's contents render in the detail view), but can stand alone for any list+detail layout.
+
+- Outer container: a single terminal pane (§6) or a `<section role="document" tabIndex={0}>` inside one.
+- Top of the view: a small inline title bar with the file name on the left and a `<Button variant="ghost" size="xs">` containing an `X` icon + `close` text on the right. The button calls `onClose()`. A `tabIndex={0}` parent + `onKeyDown` handler also calls `onClose()` on `Escape`.
+- The gutter + content is a single CSS grid: `grid grid-cols-[auto_1fr] gap-x-3 px-4 py-6 font-mono text-sm`. Each "line" of the document is one grid row containing two children (gutter cell + content cell) wrapped in a `<Fragment key={i}>`. This way, when a paragraph wraps to multiple visual lines, the gutter number stays at the top of the row (right-aligned, `self-start`) and does not duplicate — same behavior as a real text editor.
+- Gutter cell: `text-muted-foreground select-none self-start text-right font-mono text-xs tabular-nums`, with the line number right-padded to the gutter width (`pad(i + 1, gutterWidth)`).
+- Content cell: a `<p>` for each line kind:
+  - **key-value**: `<span className="text-muted-foreground inline-block w-28">{key}</span><span className="text-foreground">{value}</span>` — the key is muted, the value is foreground.
+  - **header** (e.g. `description`, `reason`, `link`): `<p className="text-muted-foreground">{text}</p>`.
+  - **paragraph**: `<p className="text-foreground">{text}</p>`. Wraps freely; the gutter does not repeat.
+  - **link**: `<a target="_blank" rel="noopener noreferrer" className="text-mauve hover:underline" title={href}>↗ {text}</a>`.
+  - **blank**: `<p className="invisible">.</p>` — preserves one line of height without a stray dot.
+- Build the line list in code as a discriminated union of these kinds; skip a line entirely (don't render the gutter either) if the corresponding field is absent (e.g. no `reason`, no `link`, no `tags`).
+- Empty state (nothing selected): a centered muted message in the same editor area. Style: mono, `text-muted-foreground`, two short lines separated by a `~`-like comment prefix.
+- Reference: `components/recommendations/editor.tsx`, `empty-state.tsx`.
 
 ---
 
@@ -214,6 +248,15 @@ Sections, top to bottom, each separated by 96px (`gap-24`):
 - Cards: `bg-background border border-border rounded-lg`, mono body, hover: border tints Mauve, `translate-y-[-2px]`.
 - The kanban dnd core (`components/kanban.tsx`) and its accessibility wiring are NOT to be modified.
 
+### Recommendations (`/recommendations`)
+
+- H1: `~/recommendations/`.
+- Comment: `# {N} items · {M} types` (both derived from data, singular/plural-aware).
+- A single terminal pane with a 2-column body: file tree sidebar (§7.2) on the left, annotated detail view (§7.3) on the right. Below `lg:`, the columns stack (sidebar on top, editor below).
+- **URL state:** the open file syncs to `?id=<recommendation-id>` in the URL. Use `router.replace(...)` (not `push`) on every change so back-button history stays clean. On mount, read the param and pre-select the file + auto-expand its folder. On invalid `?id=`, ignore silently.
+- **Required: `<Suspense>` boundary.** Any client component that calls `useSearchParams` must be wrapped in `<Suspense fallback={<YourSkeleton />}>` in the feature page composition, or static export will fail to prerender. The skeleton renders the same shell without hooks (no `useSearchParams`, no `useState`, no `useEffect`). This is a Next.js requirement, not a design choice — do not skip it.
+- Reference: `components/recommendations/window.tsx`, `sidebar.tsx`, `editor.tsx`.
+
 ---
 
 ## 9. Class & token quick reference
@@ -244,10 +287,11 @@ All of these utility classes resolve to CSS variables defined in `app/globals.cs
 2. Create `features/<route>/page.tsx` and `features/<route>/data.ts` (data + composition).
 3. Compose the page using the archetypes above. Always start with an H1 in display font using the file-label convention (`~/filename.ext`).
 4. If the page needs a terminal pane section, follow §6.
-5. If you need a directory listing, follow §7.
+5. If the page needs a sidebar of expandable categories, use §7.1 (terminal-style, one color per category) or §7.2 (explorer-style, single Mauve accent). If clicked items should show structured details, pair with §7.3.
 6. If you need a kanban or other complex surface, do NOT duplicate `kanban.tsx` — extend it or create a sibling in `components/<feature>/`.
 7. Add a link to the page in the polybar's `navLinks` array (`components/global/polybar.tsx`) — keep it mono, lowercase, no spaces.
-8. Run `pnpm build` to confirm static export still passes.
+8. **If any client component calls `useSearchParams` (i.e. the page reads URL state):** wrap that component in `<Suspense fallback={<YourSkeleton />}>` inside the feature page composition. The skeleton is a static render of the same shell with no hooks. Skipping this breaks static export. See `/recommendations` for the canonical pattern.
+9. Run `pnpm build` to confirm static export still passes.
 
 ---
 

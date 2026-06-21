@@ -20,6 +20,7 @@ const navLinks: { label: string; href: string }[] = [
   { label: 'news', href: '/news' },
   { label: 'resume', href: '/resume' },
   { label: 'roadmap', href: '/roadmap' },
+  { label: 'recommendations', href: '/recommendations' },
 ];
 
 function ThemeIcon({ theme }: { theme: ThemeName }) {
