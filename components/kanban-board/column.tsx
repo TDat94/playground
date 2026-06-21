@@ -21,7 +21,7 @@ type KanbanColumnProps = {
 };
 
 export const kanbanBoardColumnClassNames =
-  'w-64 flex-shrink-0 rounded-lg border flex flex-col border-border bg-card overflow-hidden max-h-full';
+  'w-56 flex-shrink-0 rounded-lg border flex flex-col border-border bg-card overflow-hidden max-h-full';
 
 export const KanbanColumn = ({ status, color, cards }: KanbanColumnProps) => {
   return (
@@ -43,9 +43,15 @@ export const KanbanColumn = ({ status, color, cards }: KanbanColumnProps) => {
       </div>
 
       <KanbanBoardColumnList>
-        {cards.map((card) => (
-          <KanbanCard key={card.id} card={card} color={color} />
-        ))}
+        {cards.length === 0 ? (
+          <li className="text-muted-foreground flex h-full min-h-24 flex-col items-center justify-center gap-1 px-3 py-8 font-mono text-xs">
+            <span># no item</span>
+          </li>
+        ) : (
+          cards.map((card) => (
+            <KanbanCard key={card.id} card={card} color={color} />
+          ))
+        )}
       </KanbanBoardColumnList>
     </section>
   );
