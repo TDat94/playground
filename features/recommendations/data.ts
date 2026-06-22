@@ -5,6 +5,68 @@ import {
 
 export const recommendations: Recommendation[] = [
   {
+    id: 'yorushika',
+    name: 'Yorushika / ヨルシカ',
+    type: 'artist',
+    tags: ['music', 'japanese'],
+    description:
+      'A Japanese rock duo known for their emotional and poetic lyrics, blending rock, pop, and electronic elements.',
+    reason: 'Beautiful music. Nice vocals.',
+    link: 'https://www.youtube.com/@nbuna',
+  },
+  {
+    id: 'nagu',
+    name: 'Nagu',
+    type: 'artist',
+    tags: ['digital art', 'anime'],
+    description:
+      'North American digital artist who specializes in anime-style illustrations and splash art.',
+    reason: 'Beautiful art. Also if you know you know.',
+    link: 'https://www.pixiv.net/en/users/316388/artworks',
+  },
+  {
+    id: 'namie',
+    name: 'Namie',
+    type: 'artist',
+    tags: ['digital art', 'anime'],
+    description:
+      'Australian digital artist specializing in anime-style character designs and splash art. She is well known for contributions to gacha games like Fate/Grand Order, Project SEKAI COLORFUL STAGE! Feat. Hatsune Miku, Azurlane, and Arknights.',
+    reason: 'If you know you know.',
+    link: 'https://www.namie.art/about',
+  },
+  {
+    id: 'tetoris',
+    name: 'Tetoris',
+    type: 'song',
+    tags: ['music', 'japanese', 'vocaloid'],
+    description:
+      'Song by Hiiragi Magnetite, with Kasane Teto as the vocalist and melody reminiscent of the original Tetris Soundtrack.',
+    reason:
+      'Catchy song. Makes good use of an old melody and modern vocaloid technology.',
+    link: 'https://www.youtube.com/watch?v=Soy4jGPHr3g',
+  },
+  {
+    id: 'confesison-of-rotten-girl',
+    name: 'Confessions of a Rotten Girl',
+    type: 'song',
+    tags: ['music', 'english', 'vocaloid'],
+    description:
+      "Song by SAWTOWNE, with Hatsune Miku as the vocalist and melody reminiscent of Diana Boncheva's Beethoven Virus.",
+    reason:
+      'Addictive song. Makes good use of an old melody and modern vocaloid technology, plus Live2D for the MV.',
+    link: 'https://www.youtube.com/watch?v=sV2H712ldOI',
+  },
+  {
+    id: 'the-substance',
+    name: 'The Substance',
+    type: 'movie',
+    tags: ['film', 'psychological horror', 'body horror', '18+'],
+    description:
+      'A psychological horror film about a woman who becomes consumed by her own identity.',
+    reason: 'Good plot. Good visuals. Disgustingly good sound design.',
+    link: 'https://www.imdb.com/title/tt17526714/',
+  },
+  {
     id: 'asus-tuf-f16',
     name: 'ASUS TUF Gaming F16 (2025)',
     type: 'irl-tool',
